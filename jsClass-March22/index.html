@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML5/CSS Code Lab</title>
+	<meta charset="utf-8" />
+
+	<!-- THIS BIT OF CODE IS TO INCLUDE HTML5 SUPPORT FOR OLDER BROWSERS -->
+    <!--[if IE]>
+    	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- THESE ARE THE GOOGLE BLUEPRINT STYLE SHEETS. DO NOT DELETE THESE! -->
+    <link rel="stylesheet" href="css/bp/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="css/bp/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]>
+    	<link rel="stylesheet" href="css/bp/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+
+    <!-- THIS IS OUR LOCAL CSS FILE THAT YOU WILL USE TO MAKE ALL THE CHANGES TO MIRROR THIS PAGE! -->
+    <link rel="stylesheet" href="css/default.css" type="text/css" media="screen, projection">
+
+    <!-- THIS IS OUR SYNTAX HIGHLIGHTER -->
+	<script type="text/javascript" src="js/sh/shCore.js"></script>
+	<script type="text/javascript" src="js/sh/shBrushJScript.js"></script>
+	<link type="text/css" rel="stylesheet" href="css/sh/shCoreDefault.css"/>
+	<link type="text/css" rel="Stylesheet" href="css/sh/shThemeRDark.css"/>
+
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+    <SCRIPT LANGUAGE="JavaScript" SRC="js/jquery/jquery-1.6.2.min.js"></SCRIPT>
+    <SCRIPT LANGUAGE="JavaScript" SRC="js/examples.js"></SCRIPT>
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<div class="container">
+				<h1>OOP JavaScript</h1>
+				<menu>
+					<ul>
+						<li><a href="#basics">basics</a></li>
+						<li class="sep">|</li>
+						<li><a href="#functions">functions</a></li>
+						<li class="sep">|</li>
+						<li><a href="#objects">objects</a></li>
+						<li class="sep">|</li>
+						<li><a href="#inheritance">inheritance</a></li>
+						<li class="sep">|</li>
+						<li><a href="#clases">classes</a></li>
+					</ul>
+				</menu>
+			</div>
+		</header>
+	 
+		<content>
+			<div class="container">
+				<section>
+					<div id="pageStatus" class="success">Find and style this DIV to say "The operation was a success!" with the success styles! </div>
+				</section>
+
+				<section>
+					<a name="basics"></a>
+					<div class="component">
+						<h2>The Basics of JavaScript</h2>
+						<div class="list">
+							<label>
+								Variable Types in JavaScript
+							</label>
+							<ol>
+								<li><p>String</p></li>
+								<li><p>Boolean</p></li>
+								<li><p>Number</p></li>
+								<li><p>Array</p></li>
+								<li><p>Function</p></li>
+								<li><p>Object</p></li>
+							</ol>
+						</div>
+						<p>Our little JavaScript has a number of inherent stuff which we might want to make a note. First of all, there are just a few types of variables that are available in JavaScript. Remember that types are not explicitly set in JavaScript and can be changed on the fly (for the most part.)</p>
+						<p>Here is a quick list.</p>
+						<br clear="both"/>
+						<p>Alright, now that we know some JavaScript basics, I want to show you a little about how JavaScript will compile your code before it runs. As we learned earlier, JavaScript will rewrite your code to undertstand Functions first before executing. So, let's look at the following code.
+
+						<pre class="brush: js;">
+							foo();
+							function foo(){
+								alert('foo');
+							}
+
+							// The above code is to actually execute as follows:
+
+							var foo = function(){
+								alert('foo');
+							};
+							foo();
+
+							// JavaScript is actually rewriting your code here because of the way it compiles. 
+							// Check out the following example as well.
+
+							b = 0;
+							a = b + 14;
+							var b;
+
+							// JavaScript is actually going to write this as 
+
+							var b;
+							b = 0;
+							a = b + 14;
+
+							// You really need to understand what VAR is doing with your variables in terms of context and scope.
+
+
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<a name="functions"></a> 
+					<div class="component">
+						<h2>JavaScript Functions</h2>
+						<p>
+							Allright. Let's look at some function declarations and understand the differences between them. Remember that we're dealing with scope and context anytime we talk about functions. Also, remember that functions can be used as Constructors and that they always have Prototypes.
+						</p>
+						<pre class="brush: js;">
+							// Function Declaration
+							function(){
+								alert('foo');
+							}
+
+							// Named Function Declaration
+							function foo(){
+								alert('foo');
+							}
+
+							// Function Expression Declaration
+							var foo = function(){
+								alert('foo');
+							};
+
+							// Self-running Function Declaration
+							(function(foo){
+								alert(foo);
+							})(foo);
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<a name="objects"></a>
+					<div class="mug component">
+						<h2>JavaScript Objects</h2>
+						<p>
+							Let's look at Objects for a second. We need to understand how these Objects work in order to make them work for us. We're going to illustrate Objects, Object Literals, and Function Objects
+						</p>
+						<pre class="brush: js;">
+							// Object Declaration
+							var coffee1 = new Object();
+							coffee1.color = 'black';
+							coffee1.taste = 'goog';
+							coffee1.drink = function(){
+								console.log('OMG coffee is good');
+							};
+							coffee1.drink();
+
+							// Object Literal Declaration
+							var coffee2 = {
+								color:'black',
+								taste:'good',
+								drink:function(){
+									console.log('OMG coffee is good.');
+								}
+							};
+							coffee2.drink();
+
+							// Function Object Declaration
+							var Coffee = function(){
+								this.color='black';
+								this.taste='good';
+								this.drink=function(){
+									console.log('OMG coffee is good.');
+								}
+							};
+							var coffee3 = new Coffee();
+							coffee3.drink();
+						</pre>
+						<p>
+							Now, from the way that these Objects look, you might expect that they behave in very similar ways. This is absolutely not the case as we will see when we run some further examples. 
+					</div>
+				</section>
+
+				<section>
+					<a name="inheritance"></a> 
+					<div class="blend component">
+						<h2>JavaScript Inheritance</h2>
+						<p>
+							Let's look at Objects for a second. We need to understand how these Objects work in order to make them work for us. We're going to illustrate Objects, Object Literals, and Function Objects
+						</p>
+						<pre class="brush: js;">
+							// Function Object Declaration
+							var Coffee = function(){
+								this.color='black';
+								this.taste='good';
+								this.drink=function(){
+									console.log('OMG coffee is good.');
+								}
+							};
+							var myCoffee = new Coffee(); // Here we are creating a new instance of Coffee.
+							myCoffee.drink(); // Here we see how we now have a coffee Object
+
+							var SpecialBlend = Coffee;
+							SpecialBlend.prototype = new Coffee();
+							SpecialBlend.prototype.constuctor = SpecialBlend;
+
+							var mySpecialBlend = new SpecialBlend();
+							mySpecialBlend.drink();
+
+						</pre>
+						<p>
+							Now, from the way that these Objects look, you might expect that they behave in very similar ways. This is absolutely not the case as we will see when we run some further examples. 
+					</div>
+				</section>
+
+
+				<section>
+					<a name="classes"></a> 
+					<div class="blend component">
+						<h2>JavaScript Classes</h2>
+						<p>
+							Now that we know how classes are structured, we can build a function that will write this stuff for us. What we want to do is write a method on Function's Prototype that we can use anytime we want to create a sub-class. For this example, we'll call it makeSubClass().
+						</p>
+						<pre class="brush: js;">
+							Function.prototype.makeSubclass= function() {
+						    	function Class() {
+							        if (!(this instanceof Class))
+							            throw 'Constructor function requires new operator';
+							        if ('_init' in this)
+							            this._init.apply(this, arguments);
+								}
+							    if (this!==Object) {
+							        Function.prototype.makeSubclass.nonconstructor.prototype= this.prototype;
+							        Class.prototype= new Function.prototype.makeSubclass.nonconstructor();
+							    }
+							    return Class;
+							};
+							Function.prototype.makeSubclass.nonconstructor = function(){};
+
+							var Person= Object.makeSubclass();
+							Person.prototype._init= function(isDancing) {
+							    this.dancing= isDancing;
+							};
+							Person.prototype.dance= function() {
+							    console.log(this.dancing);
+							};
+
+							var Ninja = Person.makeSubclass();
+							Ninja.prototype._init= function() {
+							    Person.prototype._init.call(this, false);
+							};
+							Ninja.prototype.swingSword= function() {
+							    console.log('Swipe swipe!');
+							};
+
+							var p= new Person(true);
+							p.dance(); // => true
+
+							var n = new Ninja();
+							n.dance(); // => false
+							n.swingSword(); // => true
+
+						</pre>
+						<p>
+							Now, from the way that these Objects look, you might expect that they behave in very similar ways. This is absolutely not the case as we will see when we run some further examples. 
+					</div>
+				</section>
+				<!--
+				<section>
+					<div class="span-8">
+						<div class="component" rel="article 1">
+							<p>Here, we're demonstrating a 3 column layout of content.</p>
+						</div>
+					</div>
+					<div class="span-8">
+						<div class="component" rel="article 2">
+							<p>3 column layouts are handy for compartmentalizing equal but separate information.</p>
+						</div>
+					</div>
+					<div class="span-8 last">
+						<div class="component" rel="article 3">
+							<p>Putting things like articles right next to each other allows the user to scan them all equally and make a decision.</p>
+						</div>
+					</div>
+				</section>
+			-->
+			</div>
+		</content>
+	</div>
+	<footer class="">
+		<div class="container">
+			<span>Copyright 2012 - Hoover's Code Lab</span>
+		</div>
+	</footer>
+</body>
+</html>
